@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "numpy": "^0.0.1",
+    "requests": "^0.3.0",
     "serverless-python-requirements": "^6.0.1"
   }
 }
