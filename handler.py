@@ -28,7 +28,8 @@ def hello(event, context):
             last_row = len(all_Data) + 1
             currentTime = datetime.datetime.now().date
             range = 'A'+ str(last_row) + ':D' + str(last_row)
-            worksheet.update(range,[["2014-01-13",name,number,ins_person_id]])
+            date_now = str(datetime.datetime.now().month) + "-" + str(datetime.datetime.now().day) + "-" + str(datetime.datetime.now().year)
+            worksheet.update(range,[[date_now,name,number,ins_person_id]])
             return {
                 "version":"2.0",
                 "template":
