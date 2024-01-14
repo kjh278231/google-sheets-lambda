@@ -15,7 +15,7 @@ def hello(event, context):
         number = param["number"]
         number = str.replace(number,"-","")
         number = str.replace(number,".","")
-        ins_person_id = param["channel"]
+        ins_person_id = json.loads(event["body"])["channel"]["value"]
 
         # json 파일이 위치한 경로를 값으로 줘야 합니다.
         json_file_path = "wired-torus-351301-ad2ef6a9e623.json"
