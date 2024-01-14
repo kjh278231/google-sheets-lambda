@@ -13,6 +13,7 @@ def hello(event, context):
         param = json.loads(event["body"])["action"]["params"]
         name = param["name"]
         number = param["number"]
+        ins_person_id = param["channel"]
 
         # json 파일이 위치한 경로를 값으로 줘야 합니다.
         json_file_path = "wired-torus-351301-ad2ef6a9e623.json"
@@ -21,7 +22,6 @@ def hello(event, context):
         doc = gc.open_by_url(spreadsheet_url)
 
         worksheet = doc.worksheet("제출 명단")
-        ins_person_id = "주인계정"
 
         all_Data = worksheet.get_all_values()
         if(check_duplicated_data(all_Data,name,number)):
@@ -32,7 +32,7 @@ def hello(event, context):
             return {
                 "version":"2.0",
                 "template":
-                    {"outputs":[{"simpleText":{"text":"hello I'm "+name +": "+number}}]}
+                    {"outputs":[{"simpleText":{"text":name+"님 신청해주셔서 감사합니다. 빠른 시간 내에 응답드리도록 하겠습니다!"}}]}
             }
         else:
             return {
