@@ -11,11 +11,12 @@ def check_duplicated_data(all_Data,name,number):
 def hello(event, context):
     try:
         param = json.loads(event["body"])["action"]["params"]
+        print(json.loads(event["body"]))
         name = param["name"]
         number = param["number"]
         number = str.replace(number,"-","")
         number = str.replace(number,".","")
-        ins_person_id = json.loads(event["body"])["channel"]["value"]
+        ins_person_id = json.loads(event["body"])["bot"]["name"]
 
         # json 파일이 위치한 경로를 값으로 줘야 합니다.
         json_file_path = "wired-torus-351301-ad2ef6a9e623.json"
@@ -29,7 +30,7 @@ def hello(event, context):
         if(check_duplicated_data(all_Data,name,number)):
             last_row = len(all_Data) + 1
             range = 'A'+ str(last_row) + ':D' + str(last_row)
-            date_now = str(datetime.datetime.now().month) + "-" + str(datetime.datetime.now().day) + "-" + str(datetime.datetime.now().year)
+            date_now = str(datetime.datetime.now().year) + "-" + str(datetime.datetime.now().month) + "-" + str(datetime.datetime.now().day)
             worksheet.update(range,[[date_now,name,number,ins_person_id]])
             return {
                 "version":"2.0",
