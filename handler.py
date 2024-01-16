@@ -1,11 +1,15 @@
 import json
 import gspread
 import datetime
+import re
 
 def check_duplicated_data(all_Data,name,number):
     for line in all_Data:
         if line[1] == name and line[2] == number :
             return False
+        if len(line[2]) >= 8 and len(number) >= 8:
+            if line[2][-8:] == number[-8:]:
+                return False
     return True
 
 def validationNumber(event,context):
@@ -13,14 +17,19 @@ def validationNumber(event,context):
     print(context)
     return True
 
+def filteringNumber(number):
+    number = str.replace(number,"-","")
+    number = str.replace(number,".","")
+    number = re.sub(r'[^0-9\+]', '', number)
+    print(number)
+    return number
+
 def hello(event, context):
     try:
         param = json.loads(event["body"])["action"]["params"]
         print(json.loads(event["body"]))
         name = param["name"]
-        number = param["number"]
-        number = str.replace(number,"-","")
-        number = str.replace(number,".","")
+        number = filteringNumber(param['number'])
         ins_person_id = json.loads(event["body"])["bot"]["name"]
 
         # json 파일이 위치한 경로를 값으로 줘야 합니다.
@@ -55,4 +64,3 @@ def hello(event, context):
         "template":
             {"outputs":[{"simpleText":{"text":"오류가 발생했습니다."}}]}
         }       
-
