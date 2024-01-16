@@ -70,6 +70,12 @@ functions:
       - httpApi:
           path: /users/add
           method: post
+  validationNumber:
+    handler: handler.validationNumber
+    events:
+      - httpApi:
+          path: /validate/number
+          method: post
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details

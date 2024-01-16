@@ -8,6 +8,11 @@ def check_duplicated_data(all_Data,name,number):
             return False
     return True
 
+def validationNumber(event,context):
+    print(event)
+    print(context)
+    return True
+
 def hello(event, context):
     try:
         param = json.loads(event["body"])["action"]["params"]
@@ -35,7 +40,7 @@ def hello(event, context):
             return {
                 "version":"2.0",
                 "template":
-                    {"outputs":[{"simpleText":{"text":"신청해주셔서 감사합니다. 빠른 시간 내에 응답드리도록 하겠습니다!"}}]}
+                    {"outputs":[{"simpleText":{"text":"확인했습니다. 순차적으로 무료 입장 도와 드리도록 하겠습니다. \n\n많은 분들의 입장을 도와드리고 있다 보니, 시간이 다소 지연되더라도 양해 부탁 드립니다. ^^"}}]}
             }
         else:
             return {
