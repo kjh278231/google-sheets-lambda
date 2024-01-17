@@ -13,9 +13,28 @@ def check_duplicated_data(all_Data,name,number):
     return True
 
 def validationNumber(event,context):
-    print(event)
-    print(context)
-    return True
+    try:
+        print(event)
+        number = json.loads(event["body"])['value']['origin']
+        print(context)
+        number = filteringNumber(number)
+        if len(str(number)) < 8:
+            return {
+                "status": "FAIL",
+                "value": "-",
+                "message": "너무 짧은 문자열입니다."
+            }
+        return {
+            "status": "SUCCESS",
+            "value": str(number),
+            "message": "감사합니다."
+        }
+    except Exception as inst:
+        return {
+            "status": "FAIL",
+            "value": "-",
+            "message": "오류가 발생했습니다.."
+        }
 
 def filteringNumber(number):
     number = str.replace(number,"-","")
@@ -33,7 +52,7 @@ def hello(event, context):
         ins_person_id = json.loads(event["body"])["bot"]["name"]
 
         # json 파일이 위치한 경로를 값으로 줘야 합니다.
-        json_file_path = "wired-torus-351301-ad2ef6a9e623.json"
+        json_file_path = "optical-bond-347104-39356a6af60c.json"
         gc = gspread.service_account(json_file_path)
         spreadsheet_url = "https://docs.google.com/spreadsheets/d/1InUZrKBUz6lnY9xqOSxms660txnx1nCawbaUeitV8kA/edit#gid=1805506674"
         doc = gc.open_by_url(spreadsheet_url)
