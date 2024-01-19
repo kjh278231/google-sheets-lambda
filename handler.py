@@ -22,7 +22,7 @@ def validationNumber(event,context):
             return {
                 "status": "FAIL",
                 "value": "-",
-                "message": "너무 짧은 문자열입니다."
+                "message": "형식을 맞춰 다시 입력해주세요.\n"
             }
         return {
             "status": "SUCCESS",
@@ -57,25 +57,18 @@ def hello(event, context):
         spreadsheet_url = "https://docs.google.com/spreadsheets/d/1InUZrKBUz6lnY9xqOSxms660txnx1nCawbaUeitV8kA/edit#gid=1805506674"
         doc = gc.open_by_url(spreadsheet_url)
 
-        worksheet = doc.worksheet("테스트총계")
+        worksheet = doc.worksheet("WI총계(현물+선물)")
 
         all_Data = worksheet.get_all_values()
-        if(check_duplicated_data(all_Data,name,number)):
-            last_row = len(all_Data) + 1
-            range = 'A'+ str(last_row) + ':D' + str(last_row)
-            date_now = str(datetime.datetime.now().year) + "-" + str(datetime.datetime.now().month) + "-" + str(datetime.datetime.now().day)
-            worksheet.update(range,[[date_now,name,number,ins_person_id]])
-            return {
-                "version":"2.0",
-                "template":
-                    {"outputs":[{"simpleText":{"text":"확인했습니다. 순차적으로 무료 입장 도와 드리도록 하겠습니다. \n\n많은 분들의 입장을 도와드리고 있다 보니, 시간이 다소 지연되더라도 양해 부탁 드립니다. ^^"}}]}
-            }
-        else:
-            return {
-                "version":"2.0",
-                "template":
-                    {"outputs":[{"simpleText":{"text":"이미 등록된 정보입니다. 다시 확인해주세요."}}]}
-            }
+        last_row = len(all_Data) + 1
+        range = 'A'+ str(last_row) + ':D' + str(last_row)
+        date_now = str(datetime.datetime.now().year) + "-" + str(datetime.datetime.now().month) + "-" + str(datetime.datetime.now().day)
+        worksheet.update(range,[[date_now,name,number,ins_person_id]])
+        return {
+            "version":"2.0",
+            "template":
+                {"outputs":[{"simpleText":{"text":"확인했습니다. 순차적으로 무료 입장 도와 드리도록 하겠습니다. \n\n많은 분들의 입장을 도와드리고 있다 보니, 시간이 다소 지연되더라도 양해 부탁 드립니다. ^^"}}]}
+        }
     except Exception as inst:
         print(inst)
         return {
