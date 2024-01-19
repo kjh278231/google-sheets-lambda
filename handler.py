@@ -3,6 +3,29 @@ import gspread
 import datetime
 import re
 
+def validationNameHandler(event, context):
+    try:
+        print(event)
+        name = json.loads(event["body"])['value']['origin']
+        print(context)
+        if str(name) == "무료입장 신청":
+            return {
+                "status": "FAIL",
+                "value": "-",
+                "message": "형식을 맞춰 다시 입력해주세요.\n"
+            }
+        return {
+            "status": "SUCCESS",
+            "value": str.replace(name,"입니다",""),
+            "message": "감사합니다."
+        }
+    except Exception as inst:
+        return {
+            "status": "FAIL",
+            "value": "-",
+            "message": "오류가 발생했습니다.."
+        }
+
 def check_duplicated_data(all_Data,name,number):
     for line in all_Data:
         if line[1] == name and line[2] == number :
