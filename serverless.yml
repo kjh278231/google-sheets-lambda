@@ -29,6 +29,7 @@ provider:
 
 plugins:
   - serverless-python-requirements
+  - serverless-plugin-include-dependencies
 
 custom:
   pythonRequirements:
@@ -81,6 +82,18 @@ functions:
     events:
       - httpApi:
           path: /validate/name
+          method: post
+  sendSQSMessage:
+    handler: sheets-insert.sqsTest.sendMessageHandler
+    events:
+      - httpApi:
+          path: /sendMessage
+          method: post
+  recieveSQSMessage:
+    handler: sheets-insert.sqsTest.recieveMessageHandler
+    events:
+      - httpApi:
+          path: /recieveMessage
           method: post
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

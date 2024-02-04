@@ -1,6 +1,7 @@
 import json
 import gspread
 import datetime
+import dateutil.tz
 import re
 
 def validationNameHandler(event, context):
@@ -85,7 +86,8 @@ def hello(event, context):
         all_Data = worksheet.get_all_values()
         last_row = len(all_Data) + 1
         range = 'A'+ str(last_row) + ':D' + str(last_row)
-        date_now = str(datetime.datetime.now().year) + "-" + str(datetime.datetime.now().month) + "-" + str(datetime.datetime.now().day)
+        korea_now = datetime.datetime.now(dateutil.tz.gettz('Asia/Seoul'))
+        date_now = str(korea_now.year) + "-" + str(korea_now.month) + "-" + str(korea_now.day)
         worksheet.update(range,[[date_now,name,number,ins_person_id]])
         return {
             "version":"2.0",
