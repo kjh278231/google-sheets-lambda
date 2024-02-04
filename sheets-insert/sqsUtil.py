@@ -106,4 +106,3 @@ def delete_messages(queue, messages):
         return response
 
 
-
