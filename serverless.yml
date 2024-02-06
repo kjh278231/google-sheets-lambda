@@ -90,7 +90,7 @@ functions:
           path: /sendMessage
           method: post
   recieveSQSMessage:
-    handler: sheets-insert.sqsTest.receiveMessageHandler
+    handler: sheets-insert.sqsReceive.receiveMessageHandler
     events:
       - httpApi:
           path: /recieveMessage

@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "optical-bond-347104",
+  "private_key_id": "39356a6af60c5deb1d6d3d35d49166eaa77d8742",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCdZYmtIV+LeSAm\nxnJfWHTWS2jNzDYHof8wSgpupJx2q9B9PBvlcl8lULOfaJgpOeit9XX3RlhoUpIj\nGv7x9k3tBFsOZZggHRK+7iNRMbnWQNEcpbrs+P8QQ4OUXXQdQyzugRS8z1Cfz3jl\nkfM6xamj6mEOt2L8efXyE0ru3fYaxjhpvEwFkMmDduSzi9CBQroFLR/Cs5VeEIbJ\nzSSYzmkS7GGZ2K4UjaoSMh+jUYHfhQkxKZXgfZk7YgnNbWokWx6bL57iZX48eHzI\nlYEFqLypj3vpsXtEHTYpO9NhCSKoOrZqxCrnc8uXNhLWPcddiHSBK3GY142O6DzT\nAo7UvDWnAgMBAAECggEADpcJ8xWD4M7ijxWYJoRxmCe3WFRUsdJvcE98thLmOg3l\nLqayw0sdzLy1WdJ9QF0Q14dIXxqTOWBmEYEAHvfA83aS5ju+pUNsqGw0s+MTIewy\nNiCaujq+kghgGxGqoMfIU3d9r57cD2RRBZ7I2CrYdcxVIOMY9uRrSvxE1u2WUZbn\nAUKsK2PL0EyF+dBLvmxbjE4ktSV3B6CFnUu29YIzHhANxsJvhMfEcQrmgPHU2cYi\ntFjOYXGTP1OAO/96qUxIjot/SOSVZ5OWzq1CoE1lhbKyT1jZr63wjC/eJ/jqRwgf\nmoJ/sQroyKAio2GVtKIU7YRgXgdWEks30bSuf2S2oQKBgQDTvslz3UEjtdHO4hH4\nMrviZd1mrl/pDLzyvQiv5UclZZm8L4/+0PMyfSrs6J8UYJZch14m6dtGzTsT5SuF\n4zz4MvGgqb/GrqGxTM9+fHe0i8E8TVtdfsjgjJrRKu+fNyiIca9rU8l+JwM2YwES\nATW2xKMRvcojKJ08rMm8ETWP9wKBgQC+SuIYwV1gb96NcHVayKTY28uSVzIUhpw3\npQwVPrW340v+rOXwZz3gWZivLMw52VKxyLQvBtFSLn1IGekIa3iBDrFLiBYtCIz9\n3yL1MivwrsH8RO5zYHZU7qhpKndObpFfi4NQpEkCPPW/RH6ckrwcBTYUfg/lzQSU\nfCqSSVp70QKBgQCb5hB0miZnoGqFI7WPQ+tJWS6VdzVuZM6I+dz3hJvJUPDLuUkP\nl9A3ECkWnH7jhemu3ovXor6rdldU4poUzaYKJ5f3boOgSNsLqz3qJsIL0AnJ2Dq4\nr6w+h8dE0ZPzaa0SKIG7R8lGdHrNBD+5feKKWmSln1LAaBq8nYs6SIFjKQKBgAHD\nMcrm55WAE8CdnQilORmlF4KYeidEg+fkCHOd7BLy8P4/3bVXT3RngAmHUbDreV+a\nK0kQOBoZwiFL1CO20xvm5e98KDBsltm3GlzJBS0qgTNz8/1vlEj/GOI4eXhpf8Ex\nypqRmveBVwlZeg67MTDVP4X7EOyg9HznlYFbWpIxAoGBANESxeVniMsZsUZpvzXb\n8GMDTUYe+vfyap+HX5otASpS5FxRQw1Bu6MLVpk2F8fnQDEIQSv0onTVTRbmjOTy\nvoVb8QFacToCqcCANkfAMjxOqrqG24sCf+1vbfyfcbji0KNX4ahmxSqDeOKV5P2y\nGcDQrnElmQl6P+VpqFGXe210\n-----END PRIVATE KEY-----\n",
+  "client_email": "gspread-test@optical-bond-347104.iam.gserviceaccount.com",
+  "client_id": "102875274273411481323",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/gspread-test%40optical-bond-347104.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

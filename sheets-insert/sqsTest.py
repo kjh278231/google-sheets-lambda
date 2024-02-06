@@ -1,13 +1,26 @@
 import boto3
+import json
 from botocore.config import Config
 import logging
+import re
 
 logger = logging.getLogger(__name__)
 
+def filteringNumber(number):
+    number = str.replace(number,"-","")
+    number = str.replace(number,".","")
+    number = re.sub(r'[^0-9\+]', '', number)
+    print(number)
+    return number
+
 def sendMessageHandler(event, context):
     try:
+        param = json.loads(event["body"])["action"]["params"]
+        print(json.loads(event["body"]))
+        name = param["name"]
+        number = filteringNumber(param['number'])
+        ins_person_id = json.loads(event["body"])["bot"]["name"]
 
-        
         my_config = Config(
             region_name = 'ap-northeast-2',
             signature_version = 'v4',
@@ -26,51 +39,31 @@ def sendMessageHandler(event, context):
 
         # queue 로 메시지 전송하기
         send_messages(queue,[{
-            "id":"1",
-            "body":"This is test message",
+            "id": number,
+            "body": json.dumps({
+                "name": name,
+                "number":number,
+                "ins_person_id":ins_person_id
+            }),
             "attributes":{
                 'Author': {
                     'StringValue': 'Daniel',
                     'DataType': 'String'
                 }
             }}])
-
+        return {
+            "version":"2.0",
+            "template":
+                {"outputs":[{"simpleText":{"text":"확인했습니다. 순차적으로 무료 입장 도와 드리도록 하겠습니다. \n\n많은 분들의 입장을 도와드리고 있다 보니, 시간이 다소 지연되더라도 양해 부탁 드립니다. ^^"}}]}
+        }
     except Exception as inst:
         logger.error(inst)
         return {
-            "status": "FAIL",
-            "value": "-",
-            "message": "오류가 발생했습니다.."
-        }
+            "version":"2.0",
+            "template":
+                {"outputs":[{"simpleText":{"text":"오류가 발생했습니다."}}]}
+        }  
 
-def receiveMessageHandler(event, context):
-    try:
-        logger.info(event)
-        my_config = Config(
-            region_name = 'ap-northeast-2',
-            signature_version = 'v4',
-            retries = {
-                'max_attempts': 10,
-                'mode': 'standard'
-            }
-        )
-        # 서비스 자원 가져오기
-        sqs = boto3.resource('sqs',config=my_config)
-
-        # 큐 가져오기. SQS.Queue 인스턴스가 반환됩니다.
-        queue = sqs.get_queue_by_name(QueueName='SPREAD_INSERT_QUEUE')
-
-        # queue에서 메시지 가져오기
-        meesage = receive_messages(queue,1,0)
-        logger.info(meesage)
-    except Exception as inst:
-        logger.error(inst)
-        return {
-            "status": "FAIL",
-            "value": "-",
-            "message": "오류가 발생했습니다.."
-        }
-    
 def send_messages(queue, messages):
     """
     Send a batch of messages in a single request to an SQS queue.
@@ -94,6 +87,7 @@ def send_messages(queue, messages):
             for ind, msg in enumerate(messages)
         ]
         response = queue.send_messages(Entries=entries)
+        print(response)
         if "Successful" in response:
             for msg_meta in response["Successful"]:
                 logger.info(
